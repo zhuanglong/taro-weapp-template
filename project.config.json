@@ -1,15 +1,32 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "outdoor-sport",
+  "miniprogramRoot": "dist/",
+  "projectname": "taro-weapp-template",
   "description": "",
-  "appid": "touristappid",
+  "appid": "wxcaa313fa4541c9be",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
-    "postcss": false,
-    "minified": false
+    "postcss": true,
+    "minified": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "condition": false
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "libVersion": "3.2.3",
+  "srcMiniprogramRoot": "dist/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }
