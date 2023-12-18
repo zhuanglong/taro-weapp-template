@@ -1,0 +1,71 @@
+<template>
+  <div class="EmptyStatus--root">
+    <image class="img" :style="{ marginTop: marginTop }" :src="imgSrc" />
+    <div class="main-text">{{ mainText }}</div>
+    <div class="second-text">
+      {{ secondText }}<div class="refresh" @click="emit('clickOperate')">{{ operateText }}</div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+  import { type PropType } from 'vue';
+
+  defineProps({
+    imgSrc: {
+      type: String as PropType<string>,
+      default: require('@/assets/icons/empty-status.svg'),
+    },
+    mainText: {
+      type: String as PropType<string>,
+      default: '暂无内容',
+    },
+    secondText: {
+      type: String as PropType<string>,
+      default: '暂未搜索到相关内容，',
+    },
+    operateText: {
+      type: String as PropType<string>,
+      default: '点击重试',
+    },
+    marginTop: {
+      type: String as PropType<string>,
+      default: '300rpx',
+    },
+  });
+
+  const emit = defineEmits(['clickOperate']);
+</script>
+
+<style lang="scss">
+  .EmptyStatus--root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .main-text {
+      margin-top: 10px;
+      color: #000;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .second-text {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-top: 10px;
+      color: #687383;
+      font-size: 14px;
+
+      .refresh {
+        color: #4d64de;
+      }
+    }
+  }
+</style>

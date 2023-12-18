@@ -3,6 +3,7 @@
   "libVersion": "3.2.3",
   "projectname": "taro-weapp-template",
   "setting": {
-    "compileHotReLoad": false
+    "compileHotReLoad": false,
+    "urlCheck": false
   }
 }
