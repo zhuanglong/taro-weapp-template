@@ -18,3 +18,8 @@ export function isProdMode(): boolean {
   // node 的编译环境
   return process.env.NODE_ENV === 'production';
 }
+
+// 是否使用 mock 代替 api 返回
+export function useMock(): boolean {
+  return process.env.TARO_APP_USEMOCK === 'true';
+}

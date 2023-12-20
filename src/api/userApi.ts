@@ -1,5 +1,5 @@
 import { httpClient, ApiResult } from '@/utils/request';
-import { getAppInfo } from '@/utils/appEnv';
+import { getAppInfo } from '@/utils/config';
 
 const { apiPrefix } = getAppInfo();
 

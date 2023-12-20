@@ -157,6 +157,6 @@ export const httpClient = new Request({
   url: '',
   timeout: 20 * 1000,
   requestOptions: {
-    enableLoading: true,
+    enableLoading: false,
   },
 });

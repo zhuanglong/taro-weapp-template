@@ -49,6 +49,7 @@
     "@tarojs/runtime": "3.6.20",
     "@tarojs/shared": "3.6.20",
     "@tarojs/taro": "3.6.20",
+    "better-mock": "^0.3.7",
     "dayjs": "^1.11.10",
     "pinia": "^2.1.7",
     "taro-plugin-pinia": "^1.0.0",

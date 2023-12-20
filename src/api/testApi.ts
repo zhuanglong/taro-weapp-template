@@ -1,5 +1,6 @@
 import { httpClient, ApiResult } from '@/utils/request';
-import { getAppInfo } from '@/utils/appEnv';
+import { getAppInfo, useMock } from '@/utils/config';
+import testMock from '@/mock/test';
 
 const { apiPrefix } = getAppInfo();
 
@@ -27,6 +28,9 @@ export function getIP() {
 }
 
 export async function getRandomColor() {
+  if (useMock()) {
+    return testMock[`${apiPrefix}/test/random`]() as Promise<ApiResult<string>>;
+  }
   return httpClient.post<ApiResult<string>>({
     url: `${apiPrefix}/test/random`,
   });

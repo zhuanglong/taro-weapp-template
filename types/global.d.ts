@@ -17,6 +17,7 @@ declare namespace NodeJS {
     TARO_APP_NAME: string;
     TARO_APP_ENV: string; // 打包部署的环境
     TARO_APP_API_PREFIX: string;
+    TARO_APP_USEMOCK: 'true' | 'false';
   }
 }
 

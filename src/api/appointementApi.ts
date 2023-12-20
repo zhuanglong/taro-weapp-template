@@ -1,4 +1,8 @@
-import { ApiResult } from '@/utils/request';
+import { httpClient, ApiResult } from '@/utils/request';
+import { getAppInfo, useMock } from '@/utils/config';
+import appointementMock from '@/mock/appointement';
+
+const { apiPrefix } = getAppInfo();
 
 export interface ResActivitySchedule {
   _id: string;
@@ -14,34 +18,27 @@ export interface ReqInsertAppointementInfo {
   scheduleId: string;
 }
 export function insertAppointementInfo(params: ReqInsertAppointementInfo) {
-  return new Promise<ApiResult>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        code: 0,
-        data: null,
-        message: 'ok',
-      });
-    }, 1500);
+  if (useMock()) {
+    return appointementMock[`${apiPrefix}/appointement/insert`]() as Promise<ApiResult>;
+  }
+  return httpClient.post<ApiResult>({
+    url: `${apiPrefix}/appointement/insert`,
+    data: params,
   });
 }
 
 export interface ResAppointementRecord {
+  _id: string;
   name: string;
   tel: string;
 }
 export function getAppointementRecord() {
-  return new Promise<ApiResult<ResAppointementRecord[]>>((resolve) => {
-    setTimeout(() => {
-      resolve({
-        code: 0,
-        data: Array(20)
-          .fill(null)
-          .map((item, index) => ({
-            name: `Test_1${index}`,
-            tel: `1311111${index}${index}${index}${index}`,
-          })),
-        message: 'ok',
-      });
-    }, 1500);
+  if (useMock()) {
+    return appointementMock[`${apiPrefix}/appointement/list`]() as Promise<
+      ApiResult<ResAppointementRecord[]>
+    >;
+  }
+  return httpClient.post<ApiResult<ResAppointementRecord[]>>({
+    url: `${apiPrefix}/appointement/list`,
   });
 }
