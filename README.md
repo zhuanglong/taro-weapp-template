@@ -5,8 +5,8 @@
 - 使用最新的 Taro3, Vue3, TypeScript, Pinia 等主流技术开发
 - NutUI，自动按需引入
 - 代码规范，ESLint + Prettier + StyleLint
-- 够用的请求封装，包括异常处理，中断请求等
-- 首屏 Loading，登录校验，zustand 状态管理及持久化
+- 请求处理，包括异常、中断请求、凭证失效处理
+- Mockjs，模拟接口返回数据
 
 ## 使用
 
