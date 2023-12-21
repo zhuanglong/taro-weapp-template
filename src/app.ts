@@ -25,7 +25,9 @@ const App = createApp({
         });
       });
     };
-    checkVersion();
+    if (process.env.TARO_ENV === 'weapp') {
+      checkVersion();
+    }
   },
 });
 
