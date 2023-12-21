@@ -1,17 +1,19 @@
 <template>
-  <div class="swiper-wrapper">
-    <nut-swiper :height="150" pagination-visible pagination-color="#426543" auto-play="3000">
-      <nut-swiper-item :key="item" v-for="item in bannerArr">
-        <img :src="item" alt="" />
-      </nut-swiper-item>
-    </nut-swiper>
-  </div>
-  <div class="btn-wrapper">
-    <div class="btn btn-1" @click="goAppointementPage">
-      <div class="text">我要预约 <image class="icon" src="@/assets/images/item_more.png" /></div>
+  <div>
+    <div class="swiper-wrapper">
+      <nut-swiper :height="150" pagination-visible pagination-color="#426543" auto-play="3000">
+        <nut-swiper-item :key="item" v-for="item in bannerArr">
+          <img :src="item" alt="" />
+        </nut-swiper-item>
+      </nut-swiper>
     </div>
-    <div class="btn btn-2" @click="goAppointementListPage">
-      <div class="text">预约记录 <image class="icon" src="@/assets/images/item_more.png" /></div>
+    <div class="btn-wrapper">
+      <div class="btn btn-1" @click="goAppointementPage">
+        <div class="text">我要预约 <image class="icon" src="@/assets/images/item_more.png" /></div>
+      </div>
+      <div class="btn btn-2" @click="goAppointementListPage">
+        <div class="text">预约记录 <image class="icon" src="@/assets/images/item_more.png" /></div>
+      </div>
     </div>
   </div>
 </template>

@@ -1,18 +1,20 @@
 <template>
-  <div class="safe-area-bottom" v-if="!isEmpty">
-    <div class="list" v-if="loading">
-      <nut-skeleton width="100%" height="15px" title animated row="3" />
-      <nut-skeleton width="100%" height="15px" title animated row="3" />
-      <nut-skeleton width="100%" height="15px" title animated row="3" />
-    </div>
-    <div class="list" v-else>
-      <div class="item" :key="item.name" v-for="item in resData">
-        <div class="cell">姓名：{{ item.name }}</div>
-        <div class="cell cell-tel">联系电话：{{ item.tel }}</div>
+  <div>
+    <div class="safe-area-bottom" v-if="!isEmpty">
+      <div class="list" v-if="loading">
+        <nut-skeleton width="100%" height="15px" title animated row="3" />
+        <nut-skeleton width="100%" height="15px" title animated row="3" />
+        <nut-skeleton width="100%" height="15px" title animated row="3" />
+      </div>
+      <div class="list" v-else>
+        <div class="item" :key="item.name" v-for="item in resData">
+          <div class="cell">姓名：{{ item.name }}</div>
+          <div class="cell cell-tel">联系电话：{{ item.tel }}</div>
+        </div>
       </div>
     </div>
+    <EmptyStatus @clickOperate="clickOperate" v-else />
   </div>
-  <EmptyStatus @clickOperate="clickOperate" v-else />
 </template>
 
 <script lang="ts" setup>

@@ -1,88 +1,90 @@
 <template>
-  <div class="banner-wrapper">
-    <image
-      class="banner"
-      src="https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg"
-      mode="scaleToFill"
-    />
-  </div>
-  <nut-form ref="ruleForm" class="appointment-form" :model-value="formData">
-    <nut-form-item
-      label="姓名"
-      prop="name"
-      required
-      :rules="[
-        { required: true, message: '请填写姓名' },
-        { validator: nameValidator, message: '姓名至少两个字符' },
-      ]"
-    >
-      <nut-input
-        class="nut-input-text"
-        @blur="blurValidate('name')"
-        v-model="formData.name"
-        placeholder="请输入姓名"
-        type="text"
+  <div>
+    <div class="banner-wrapper">
+      <image
+        class="banner"
+        src="https://storage.360buyimg.com/jdc-article/NutUItaro2.jpg"
+        mode="scaleToFill"
       />
-    </nut-form-item>
-    <nut-form-item
-      label="联系电话"
-      prop="tel"
-      required
-      :rules="[
-        { required: true, message: '请填写联系电话' },
-        { validator: telValidator, message: '电话格式不正确' },
-      ]"
-    >
-      <nut-input
-        class="nut-input-text"
-        @blur="blurValidate('tel')"
-        v-model="formData.tel"
-        placeholder="请输入联系电话"
-        type="text"
-      />
-    </nut-form-item>
-    <nut-form-item
-      label="预约课程"
-      prop="scheduleId"
-      required
-      :rules="[
-        { required: true, message: '请选择课程' },
-        { validator: dateValidator, message: '请选择课程' },
-      ]"
-    >
-      <nut-button
-        v-if="!selectedScheduleInfo"
-        type="default"
-        shape="square"
-        size="mini"
-        style="width: 100px"
-        @click="visible = !visible"
-      >
-        选择课程
-      </nut-button>
-      <div v-else class="selected-schedule" @click="visible = !visible">
-        <div>{{ selectedScheduleInfo.subject }}</div>
-        <div>{{ formatScheduleDate(selectedScheduleInfo) }}</div>
-      </div>
-    </nut-form-item>
-    <nut-cell>
-      <nut-button type="info" size="large" @click="submit">提交</nut-button>
-    </nut-cell>
-  </nut-form>
-  <nut-popup
-    position="bottom"
-    closeable
-    round
-    :style="{ maxHeight: '80%' }"
-    v-model:visible="visible"
-  >
-    <div class="safe-area-bottom">
-      <div class="custom-popup-content">
-        <div class="title">课程安排</div>
-        <nut-table :columns="tableColumns" :data="tableData" />
-      </div>
     </div>
-  </nut-popup>
+    <nut-form ref="ruleForm" class="appointment-form" :model-value="formData">
+      <nut-form-item
+        label="姓名"
+        prop="name"
+        required
+        :rules="[
+          { required: true, message: '请填写姓名' },
+          { validator: nameValidator, message: '姓名至少两个字符' },
+        ]"
+      >
+        <nut-input
+          class="nut-input-text"
+          @blur="blurValidate('name')"
+          v-model="formData.name"
+          placeholder="请输入姓名"
+          type="text"
+        />
+      </nut-form-item>
+      <nut-form-item
+        label="联系电话"
+        prop="tel"
+        required
+        :rules="[
+          { required: true, message: '请填写联系电话' },
+          { validator: telValidator, message: '电话格式不正确' },
+        ]"
+      >
+        <nut-input
+          class="nut-input-text"
+          @blur="blurValidate('tel')"
+          v-model="formData.tel"
+          placeholder="请输入联系电话"
+          type="text"
+        />
+      </nut-form-item>
+      <nut-form-item
+        label="预约课程"
+        prop="scheduleId"
+        required
+        :rules="[
+          { required: true, message: '请选择课程' },
+          { validator: dateValidator, message: '请选择课程' },
+        ]"
+      >
+        <nut-button
+          v-if="!selectedScheduleInfo"
+          type="default"
+          shape="square"
+          size="mini"
+          style="width: 100px"
+          @click="visible = !visible"
+        >
+          选择课程
+        </nut-button>
+        <div v-else class="selected-schedule" @click="visible = !visible">
+          <div>{{ selectedScheduleInfo.subject }}</div>
+          <div>{{ formatScheduleDate(selectedScheduleInfo) }}</div>
+        </div>
+      </nut-form-item>
+      <nut-cell>
+        <nut-button type="info" size="large" @click="submit">提交</nut-button>
+      </nut-cell>
+    </nut-form>
+    <nut-popup
+      position="bottom"
+      closeable
+      round
+      :style="{ maxHeight: '80%' }"
+      v-model:visible="visible"
+    >
+      <div class="safe-area-bottom">
+        <div class="custom-popup-content">
+          <div class="title">课程安排</div>
+          <nut-table :columns="tableColumns" :data="tableData" />
+        </div>
+      </div>
+    </nut-popup>
+  </div>
 </template>
 
 <script lang="ts" setup>

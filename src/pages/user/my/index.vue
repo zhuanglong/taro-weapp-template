@@ -1,6 +1,8 @@
 <template>
-  <Counter />
-  <button class="nav-btn" @click="goPage">跳转测试页面</button>
+  <div>
+    <Counter />
+    <button class="nav-btn" @click="goPage">跳转测试页面</button>
+  </div>
 </template>
 
 <script lang="ts" setup>
