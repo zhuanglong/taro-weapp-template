@@ -1,14 +1,14 @@
 <template>
-  <div class="Counter--root">
-    <div class="title">Pinia Count: {{ evenOrOdd }}</div>
-    <div>
+  <view class="Counter--root">
+    <view class="title">Pinia Count: {{ evenOrOdd }}</view>
+    <view>
       <button @click="decrement()">-</button>
-      <div class="count-text">{{ count }}</div>
+      <view class="count-text">{{ count }}</view>
       <button @click="increment()">+</button>
-      <div style="margin-top: 10px"></div>
+      <view style="margin-top: 10px" />
       <button @click="incrementAsync()">async +</button>
-    </div>
-  </div>
+    </view>
+  </view>
 </template>
 
 <script lang="ts">

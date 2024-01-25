@@ -1,11 +1,11 @@
 <template>
-  <div class="EmptyStatus--root">
+  <view class="EmptyStatus--root">
     <image class="img" :style="{ marginTop: marginTop }" :src="imgSrc" />
-    <div class="main-text">{{ mainText }}</div>
-    <div class="second-text">
-      {{ secondText }}<div class="refresh" @click="emit('clickOperate')">{{ operateText }}</div>
-    </div>
-  </div>
+    <view class="main-text">{{ mainText }}</view>
+    <view class="second-text">
+      {{ secondText }}<view class="refresh" @click="emit('clickOperate')">{{ operateText }}</view>
+    </view>
+  </view>
 </template>
 
 <script lang="ts" setup>

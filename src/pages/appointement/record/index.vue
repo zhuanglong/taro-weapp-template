@@ -1,28 +1,36 @@
 <template>
-  <div>
-    <div class="safe-area-bottom" v-if="!isEmpty">
-      <div class="list" v-if="loading">
+  <view>
+    <view class="safe-area-bottom" v-if="!isEmpty">
+      <view class="list" v-if="loading">
         <nut-skeleton width="100%" height="15px" title animated row="3" />
         <nut-skeleton width="100%" height="15px" title animated row="3" />
         <nut-skeleton width="100%" height="15px" title animated row="3" />
-      </div>
-      <div class="list" v-else>
-        <div class="item" :key="item.name" v-for="item in resData">
-          <div class="cell">姓名：{{ item.name }}</div>
-          <div class="cell cell-tel">联系电话：{{ item.tel }}</div>
-        </div>
-      </div>
-    </div>
+      </view>
+      <view class="list" v-else>
+        <view class="item" :key="item.name" v-for="item in resData">
+          <view class="cell">姓名：{{ item.name }}</view>
+          <view class="cell cell-tel">联系电话：{{ item.tel }}</view>
+          <view class="cell" style="display: flex">
+            <view>预约课程：</view>
+            <view>
+              <view>{{ item.scheduleInfo?.subject }}</view>
+              <view>{{ formatScheduleDate(item.scheduleInfo, true) }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
     <EmptyStatus @clickOperate="clickOperate" v-else />
-  </div>
+  </view>
 </template>
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
 
-  import EmptyStatus from '@/conponents/EmptyStatus';
+  import EmptyStatus from '@/conponents/EmptyStatus/index.vue';
 
   import { type ResAppointementRecord, getAppointementRecord } from '@/api/appointementApi';
+  import { formatTime, getDateInWeek } from '@/utils/formatTime';
 
   definePageConfig({
     navigationBarTitleText: '预约记录',
@@ -32,7 +40,19 @@
   const loading = ref(true);
   const resData = ref<ResAppointementRecord[]>([]);
 
-  const fetchData = () => {
+  function formatScheduleDate(rowData: ResAppointementRecord['scheduleInfo'], wrap = true) {
+    const md = formatTime(rowData.start_time, 'MM月DD日');
+    const startTime = formatTime(rowData.start_time, 'HH:mm');
+    const endTime = formatTime(rowData.end_time, 'HH:mm');
+    const week = getDateInWeek(rowData.start_time);
+    const content = `${md}\n(${week})\n${startTime}-${endTime}`;
+    if (wrap) {
+      return content;
+    }
+    return content.replace(/\n/g, '');
+  }
+
+  function fetchData() {
     isEmpty.value = false;
     loading.value = true;
     getAppointementRecord().then((res) => {
@@ -44,11 +64,11 @@
         isEmpty.value = true;
       }
     });
-  };
+  }
 
-  const clickOperate = () => {
+  function clickOperate() {
     fetchData();
-  };
+  }
 
   onMounted(() => {
     fetchData();

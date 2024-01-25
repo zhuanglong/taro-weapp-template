@@ -28,10 +28,11 @@ export function getIP() {
 }
 
 export async function getRandomColor() {
+  const url = `${apiPrefix}/test/random`;
   if (useMock()) {
-    return testMock[`${apiPrefix}/test/random`]() as Promise<ApiResult<string>>;
+    return testMock[url]() as Promise<ApiResult<string>>;
   }
   return httpClient.post<ApiResult<string>>({
-    url: `${apiPrefix}/test/random`,
+    url,
   });
 }
